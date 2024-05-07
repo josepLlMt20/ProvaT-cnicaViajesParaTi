@@ -52,6 +52,17 @@ class Proveedor
      */
     private $actualizadoEn; // Fecha de la última actualización del proveedor
 
+    public function __construct($nombre = null, $correo = null, $telefono = null, $activo = 1, $fecha_creacion = null, $fecha_actualizacion = null, $tipo = null)
+    {
+        $this->nombre = $nombre;
+        $this->correoElectronico = $correo;
+        $this->telefono = $telefono;
+        $this->activo = $activo;
+        $this->creadoEn = new \DateTime();
+        $this->actualizadoEn = new \DateTime();
+        $this->tipo = $tipo;
+    }
+
     // Getters y setters
    
 

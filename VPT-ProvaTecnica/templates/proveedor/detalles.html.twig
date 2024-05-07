@@ -1,0 +1,26 @@
+{# templates/usuario/detalles.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Detalles del Proveedor{{ proveedor.nombre }}{% endblock %}
+
+{% block body %}
+    <h1>Detalles del Proveedor</h1>
+    <dl class="row">
+        <dt class="col-sm-3">ID:</dt>
+        <dd class="col-sm-9">{{ proveedor.id }}</dd>
+        <dt class="col-sm-3">Nombre:</dt>
+        <dd class="col-sm-9">{{ proveedor.nombre }}</dd>
+        <dt class="col-sm-3">Correo Electrónico:</dt>
+        <dd class="col-sm-9">{{ proveedor.correoElectronico }}</dd>
+        <dt class="col-sm-3">Teléfono:</dt>
+        <dd class="col-sm-9">{{ proveedor.telefono }}</dd>
+        <dt class="col-sm-3">Tipo:</dt>
+        <dd class="col-sm-9">{{ proveedor.tipo }}</dd>
+        <dt class="col-sm-3">Activo:</dt>
+        <dd class="col-sm-9">{{ proveedor.activo ? 'Sí' : 'No' }}</dd>
+        <dt class="col-sm-3">Creado en:</dt>
+        <dd class="col-sm-9">{{ proveedor.creadoEn ? proveedor.creadoEn|date('Y-m-d H:i:s') : '' }}</dd>
+    </dl>
+    <button type="button" class="btn btn-secondary" onclick="window.location.href='{{ path('homepage') }}'">Volver</button>
+{% endblock %}
