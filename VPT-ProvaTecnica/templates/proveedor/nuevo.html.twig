@@ -1,37 +1,120 @@
-{# templates/usuario/nuevo.html.twig #}
-
 {% extends 'base.html.twig' %}
 
-{% block title %}Añadir Usuario{% endblock %}
+{% block title %}Crear Proveedor{% endblock %}
+
+{% block stylesheets %}
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22></text></svg>">
+<script src="https://kit.fontawesome.com/0dc21b8ed4.js" crossorigin="anonymous"></script>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        header {
+            font-size: 2em;
+            text-align: center;
+            font-family: Fantasy;
+            width: 100%;
+            height: 100%;
+            --s: 200px; /* control the size */
+            --c1: #FFFFFF; /* blanco */
+            --c2: #F0F0F0; /* gris claro */
+            --c3: #E0E0E0; /* gris más claro */
+
+            background: repeating-conic-gradient(
+                    from 30deg,
+                    #0000 0 120deg,
+                    var(--c3) 0 180deg
+                )
+                calc(0.5 * var(--s)) calc(0.5 * var(--s) * 0.577),
+                repeating-conic-gradient(
+                from 30deg,
+                var(--c1) 0 60deg,
+                var(--c2) 0 120deg,
+                var(--c3) 0 180deg
+                );
+            background-size: var(--s) calc(var(--s) * 0.577);
+        }
+        .form-container {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .font-bold {
+            font-weight: bold;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        btn {
+            margin-top: 20px;
+            margin-left: 50%;
+            transform: translateX(-50%);
+        }
+
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial';
+        }
+
+        
+    </style>
+{% endblock %}
+
 
 {% block body %}
-    <h1>Añadir Usuario</h1>
-    <form method="post">
-        <div class="form-group">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="correo">Correo Electrónico:</label>
-            <input type="email" id="correo" name="correo" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="telefono">Teléfono:</label>
-            <input type="telefono" id="telefono" name="telefono" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="tipo">Tipo:</label>
-            <select id="tipo" name="tipo" class="form-control">
-                <option value="hotel">Hotel</option>
-                <option value="pista">Pista</option>
-                <option value="complemento">Complemento</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="activo">Activo:</label>
-            <input type="checkbox" id="activo" name="activo" class="form-control">
-        </div>
-        <button type="submit" class="btn btn-primary">Añadir Usuario</button>
-        <button type="button" class="btn btn-secondary" onclick="window.location.href='{{ path('homepage') }}'">Volver</button>
-    </form>
+<header class="header-container">
+    <h1 class="header-title">Nuevo Proveedor</h1>
+</header>
+    
+<div class="form-container">
+    {{ form_start(form) }}
+
+    <div class="form-group">
+        {{ form_label(form.nombre, 'Nombre', {'label_attr': {'class': 'font-bold form-label'}}) }}
+        {{ form_widget(form.nombre, {'attr': {'class': 'form-control'}}) }}    
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.correoElectronico, 'Correo Electrónico', {'label_attr': {'class': 'font-bold form-label'}}) }}
+        {{ form_widget(form.correoElectronico, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+         {{ form_label(form.telefono, 'Teléfono', {'label_attr': {'class': 'font-bold form-label'}}) }}
+        {{ form_widget(form.telefono, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.activo, 'Activo', {'label_attr': {'class': 'font-bold form-label'}}) }}
+        {{ form_widget(form.activo) }}
+    </div>
+    
+    <div class="form-group">
+        {{ form_label(form.tipo, 'Tipo', {'label_attr': {'class': 'font-bold form-label'}}) }}
+        {{ form_widget(form.tipo, {'attr': {'class': 'form-control'}}) }}
+    </div>
+
+    <div class="form-buttons">
+        {{ form_widget(form.guardar, {'attr': {'class': 'btn btn-primary'}}) }}
+        {{ form_widget(form.volver, {'attr': {'class': 'btn btn-secondary'}}) }}
+    </div>
+    {{ form_end(form) }}
+</div>
+
 {% endblock %}

@@ -30,8 +30,31 @@ class ProveedorController extends AbstractController
 
         return $this->render('proveedor/index.html.twig', ['proveedores' => $proveedores]);
     }
+    
     /**
-     * @Route("/proveedor/{id}", name="proveedor_detalles", methods={"GET"})
+     * @Route("/proveedor/create", name="proveedor_create", methods={"POST"})
+     */
+    public function nuevoProveedor(Request $request): Response
+    {
+        // $proveedor = new Proveedor();
+        $form = $this->createForm(ProveedorType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $proveedor = $form->getData();
+            $this->em->persist($proveedor);
+            $this->em->flush();
+            return $this->redirectToRoute('homepage');
+        }
+
+        return $this->render('proveedor/nuevo.html.twig', [
+            'form' => $form->createView()
+
+        ]);
+    }
+
+    /**
+     * @Route("/proveedor/detalles/{id}", name="proveedor_detalles", methods={"GET"})
      */
     public function detallesProveedor($id): Response
     {
@@ -46,42 +69,19 @@ class ProveedorController extends AbstractController
         ]);
     }
 
-
-    /**
-     * @Route("/proveedor/create", name="proveedor_create", methods={"GET","POST"})
-     */
-    public function nuevoProveedor(Request $request): Response
-    {
-        $proveedor = new Proveedor();
-        $form = $this->createForm(ProveedorType::class, $proveedor);
-        $form->handleRequest($request);
-
-        /*if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($proveedor);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('proveedor_index');
-        }*/
-
-        return $this->render('proveedor/nuevo.html.twig', [
-            'proveedor' => $proveedor,
-            'form' => $form->createView(),
-        ]);
-    }
-
     /**
      * @Route("/proveedor/{id}/update", name="proveedor_update", methods={"GET","POST"})
      */
     public function actualizarProveedor(Request $request, $id): Response{
         $proveedor = $this->getDoctrine()->getRepository(Proveedor::class)->find($id);
-        $form = $this->createForm(Proveedor::class, $proveedor);
+        $form = $this->createForm(ProveedorType::class, $proveedor);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('proveedor_index');
+            $proveedor = $form->getData();
+            $proveedor->setActualizadoEn(new \DateTime());
+            $this->em->flush($proveedor);
+            return $this->redirectToRoute('homepage');
         }
 
         return $this->render('proveedor/actualizar.html.twig', [
@@ -99,7 +99,7 @@ class ProveedorController extends AbstractController
         $entityManager->remove($proveedor);
         $entityManager->flush();
 
-        return $this->redirectToRoute('proveedor_index');
+        return $this->redirectToRoute('homepage');
     }
 }
 

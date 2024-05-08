@@ -6,4 +6,10 @@ proveedor_create:
     path: /proveedor/create
     controller: App\Controller\ProveedorController::nuevoProveedor
 
+proveedor_details:
+    path: /proveedor/{id}
+    controller: App\Controller\ProveedorController::detallesProveedor
 
+proveedor_edit:
+    path: /proveedor/{id}/edit
+    controller: App\Controller\ProveedorController::actualizarProveedor

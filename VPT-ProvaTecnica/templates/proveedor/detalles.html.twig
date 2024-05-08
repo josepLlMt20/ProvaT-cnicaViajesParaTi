@@ -4,23 +4,78 @@
 
 {% block title %}Detalles del Proveedor{{ proveedor.nombre }}{% endblock %}
 
+{% block stylesheets %}
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22></text></svg>">
+<script src="https://kit.fontawesome.com/0dc21b8ed4.js" crossorigin="anonymous"></script>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        header {
+            font-size: 2em;
+            text-align: center;
+            font-family: Fantasy;
+            width: 100%;
+            height: 100%;
+            --s: 200px; /* control the size */
+            --c1: #FFFFFF; /* blanco */
+            --c2: #F0F0F0; /* gris claro */
+            --c3: #E0E0E0; /* gris más claro */
+
+            background: repeating-conic-gradient(
+                    from 30deg,
+                    #0000 0 120deg,
+                    var(--c3) 0 180deg
+                )
+                calc(0.5 * var(--s)) calc(0.5 * var(--s) * 0.577),
+                repeating-conic-gradient(
+                from 30deg,
+                var(--c1) 0 60deg,
+                var(--c2) 0 120deg,
+                var(--c3) 0 180deg
+                );
+            background-size: var(--s) calc(var(--s) * 0.577);
+        }
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial;
+            align-items: center;
+        }
+
+        .list-group {
+            padding: 5%;
+            width: 70%;
+            margin: 0 auto;
+        }
+
+        .btn {
+            margin-top: 20px;
+            margin-left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+            <!-- Scripts de JavaScript necesarios para Bootstrap (requiere jQuery) -->
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+{% endblock %}
+
 {% block body %}
-    <h1>Detalles del Proveedor</h1>
-    <dl class="row">
-        <dt class="col-sm-3">ID:</dt>
-        <dd class="col-sm-9">{{ proveedor.id }}</dd>
-        <dt class="col-sm-3">Nombre:</dt>
-        <dd class="col-sm-9">{{ proveedor.nombre }}</dd>
-        <dt class="col-sm-3">Correo Electrónico:</dt>
-        <dd class="col-sm-9">{{ proveedor.correoElectronico }}</dd>
-        <dt class="col-sm-3">Teléfono:</dt>
-        <dd class="col-sm-9">{{ proveedor.telefono }}</dd>
-        <dt class="col-sm-3">Tipo:</dt>
-        <dd class="col-sm-9">{{ proveedor.tipo }}</dd>
-        <dt class="col-sm-3">Activo:</dt>
-        <dd class="col-sm-9">{{ proveedor.activo ? 'Sí' : 'No' }}</dd>
-        <dt class="col-sm-3">Creado en:</dt>
-        <dd class="col-sm-9">{{ proveedor.creadoEn ? proveedor.creadoEn|date('Y-m-d H:i:s') : '' }}</dd>
-    </dl>
+    <header>Detalles del Proveedor</header>
+    
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">ID: {{ proveedor.id }}</li>
+        <li class="list-group-item">Nombre: {{ proveedor.nombre }}</li>
+        <li class="list-group-item">Correo Electrónico: {{ proveedor.correoElectronico }}</li>
+        <li class="list-group-item">Teléfono: {{ proveedor.telefono }}</li>
+        <li class="list-group-item">Tipo: {{ proveedor.tipo }}</li>
+        <li class="list-group-item">Activo: {{ proveedor.activo ? 'Sí' : 'No' }}</li>
+        <li class="list-group-item">Creado en: {{ proveedor.creadoEn ? proveedor.creadoEn|date('Y-m-d H:i:s') : '' }}</li>
+        <li class="list-group-item">Actualizado en: {{ proveedor.actualizadoEn ? proveedor.actualizadoEn|date('Y-m-d H:i:s') : '' }}</li>
+    </ul>
+
     <button type="button" class="btn btn-secondary" onclick="window.location.href='{{ path('homepage') }}'">Volver</button>
 {% endblock %}
