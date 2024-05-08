@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestor de Proveedores{% endblock %}
+
+{% block head %}
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+{% endblock %}
+
+{% block stylesheets %}
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22></text></svg>">
+<script src="https://kit.fontawesome.com/0dc21b8ed4.js" crossorigin="anonymous"></script>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+    body {
+        background: linear-gradient(to bottom, white 0%, grey 100%  );
+    }
+    .btn-primary {
+        background-color: #FFA500;
+        border-color: #FFA500;
+    }
+    .btn-primary:hover {
+        background-color: #FF4500;
+        border-color: #FF4500;
+    }
+</style>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+{% endblock %}
+
+{% block body %}
+
+    <div class="container vh-100 d-flex align-items-center justify-content-center">
+        <div class="text-center">
+            <h1 class="display-4 mb-4">¡Bienvenido a tu gestor de proveedores! </h1>
+            <p class="lead">¡Gestionalos a tu gusto!</p>
+            <a onclick="window.location.href='{{ path('inicio') }}'" class="btn btn-primary btn-lg">Entrar</a>
+        </div>
+    </div>
+
+{% endblock %}

@@ -53,6 +53,15 @@
             margin-left: 50%;
             transform: translateX(-50%);
         }
+
+        .btn-secondary {
+        background-color: #FFA500;
+        border-color: #FFA500;
+        }
+        .btn-secondary:hover {
+            background-color: #FF4500;
+            border-color: #FF4500;
+        }
     </style>
 {% endblock %}
 
@@ -77,5 +86,5 @@
         <li class="list-group-item">Actualizado en: {{ proveedor.actualizadoEn ? proveedor.actualizadoEn|date('Y-m-d H:i:s') : '' }}</li>
     </ul>
 
-    <button type="button" class="btn btn-secondary" onclick="window.location.href='{{ path('homepage') }}'">Volver</button>
+    <button type="button" class="btn btn-secondary" onclick="window.location.href='{{ path('inicio') }}'">Volver</button>
 {% endblock %}

@@ -47,7 +47,7 @@ class ProveedorType extends AbstractType
             ->add('activo')
             ->add('guardar', SubmitType::class)
             ->add('volver', ButtonType::class, [
-                'attr' => ['onclick' => 'location.href="' . $this->urlGenerator->generate('homepage') . '"']
+                'attr' => ['onclick' => 'location.href="' . $this->urlGenerator->generate('inicio') . '"']
             ]);
     }
 

@@ -24,6 +24,16 @@ class ProveedorController extends AbstractController
     /**
      * @Route("/", name="homepage")
      */
+    public function inicio(): Response
+    {
+        $proveedores = $this->getDoctrine()->getRepository(Proveedor::class)->findAll();
+
+        return $this->render('proveedor/bienvenida.html.twig', ['proveedores' => $proveedores]);
+    }
+
+    /**
+     * @Route("/inicio", name="inicio")
+     */
     public function index(): Response
     {
         $proveedores = $this->getDoctrine()->getRepository(Proveedor::class)->findAll();
@@ -44,7 +54,7 @@ class ProveedorController extends AbstractController
             $proveedor = $form->getData();
             $this->em->persist($proveedor);
             $this->em->flush();
-            return $this->redirectToRoute('homepage');
+            return $this->redirectToRoute('inicio');
         }
 
         return $this->render('proveedor/nuevo.html.twig', [
@@ -81,7 +91,7 @@ class ProveedorController extends AbstractController
             $proveedor = $form->getData();
             $proveedor->setActualizadoEn(new \DateTime());
             $this->em->flush($proveedor);
-            return $this->redirectToRoute('homepage');
+            return $this->redirectToRoute('inicio');
         }
 
         return $this->render('proveedor/actualizar.html.twig', [
@@ -99,7 +109,7 @@ class ProveedorController extends AbstractController
         $entityManager->remove($proveedor);
         $entityManager->flush();
 
-        return $this->redirectToRoute('homepage');
+        return $this->redirectToRoute('inicio');
     }
 }
 
